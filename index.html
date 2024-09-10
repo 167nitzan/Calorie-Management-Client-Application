@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="/vite.svg"
+    />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>Vite + React</title>
+  </head>
+  <body>
+    <script src="/idb.js"></script>
+    <script>
+      async function test() {
+        const db = await idb.openCaloriesDB('caloriesdb', 1);
+
+        await db.clearAllCalories();
+
+        const result1 = await db.addCalories({ calorie: 200, category: 'LUNCH', description: 'glass of milk' });
+
+        const result2 = await db.addCalories({ calorie: 300, category: 'LUNCH', description: 'pizza slice' });
+
+        const getAllItems = await db.getAllCalories();
+
+        if (db) {
+          console.log('creating db succeeded');
+        }
+
+        if (result1) {
+          console.log('adding 1st calories consumption succeeded');
+        }
+
+        if (result2) {
+          console.log('adding 2nd calories consumption succeeded');
+        }
+
+        if (getAllItems) {
+          console.log('getting all items succeeded');
+          console.log(getAllItems);
+        }
+        return db;
+      }
+
+      test();
+    </script>
+    <div id="root"></div>
+    <script
+      type="module"
+      src="/src/main.jsx"
+    ></script>
+  </body>
+</html>
