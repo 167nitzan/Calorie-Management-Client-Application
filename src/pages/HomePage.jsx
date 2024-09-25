@@ -34,24 +34,22 @@ const HomePage = () => {
   };
 
   return (
-    <>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '20px',
+        margin: '20px',
+      }}
+    >
       <h1>Home Page</h1>
       <MonthYearPicker
         onChange={setSelectedDate}
         date={selectedDate}
       />
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '20px',
-          margin: '20px',
-        }}
-      >
-        <CalorieForm onSubmit={addCalories} />
-        <CalorieTable data={items} />
-      </div>
-    </>
+      <CalorieForm onSubmit={addCalories} />
+      <CalorieTable data={items} />
+    </div>
   );
 };
 

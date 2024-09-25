@@ -95,8 +95,8 @@ class CaloriesController {
 
   addCalories = calories => {
     return new Promise((resolve, reject) => {
-      calories.year = new Date().getFullYear();
-      calories.month = new Date().getMonth() + 1;
+      calories.year = calories.year || new Date().getFullYear();
+      calories.month = calories.month || new Date().getMonth() + 1;
       const transaction = this.db.transaction(this.dbName, 'readwrite');
       const store = transaction.objectStore(this.dbName);
       const request = store.add(calories);
